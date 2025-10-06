@@ -60,3 +60,21 @@ So, the simplest difference is:
 Self Join is about comparing a group to itself.
 Compound Join is about using multiple rules to compare groups.
 */
+
+
+/*
+QUE-> How the order of columns decide when we join two tables?
+ANS-> Column order doesn’t depend on LEFT or RIGHT join — it depends on the order of tables in your query.
+SELECT * FROM A LEFT JOIN B → shows A’s columns first.
+SELECT * FROM A RIGHT JOIN B → still shows A’s columns first.
+If you want B’s columns first, write SELECT * FROM B LEFT JOIN A.
+Join type only affects which table’s unmatched rows appear, not column order
+*/
+
+/*
+While JOINING the two tables, always give column names in a order in which you are joining the tables,otherwise it will not give you required result.
+for example :
+select * from table_a
+join table_b
+on table_a.column = table_b.column
+*/
