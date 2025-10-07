@@ -72,7 +72,7 @@ Join type only affects which table’s unmatched rows appear, not column order
 */
 
 /*
-While JOINING the two tables, always give column names in a order in which you are joining the tables,otherwise it will not give you required result.
+While JOINING the two tables, always give table names in a order in which order you want columns to be,otherwise it will not give you required result.
 for example :
 select * from table_a
 join table_b
