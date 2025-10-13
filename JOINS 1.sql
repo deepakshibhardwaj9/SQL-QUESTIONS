@@ -27,15 +27,17 @@ ON fa.actor_id = a.actor_id;
 
 
 /*SELF JOIN*/
-/*Self Join is join a table with itself.
+/*Self Join is a type of join used to join a table with itself.
   Sometime we need to compare data, which is present in same table, than we use Self-Join.*/
 
 /*Use Case of Self Join:
   Suppose we want to fetch the students which are working as a Teacher Assistant as well. Every student has a student_id, and if the 
   student works as a assistant teacher than it will have a teacher_id as well.
-  Now fetch the students who has its teacher_id and student_id as well.*/
+  Now fetch the students who has its teacher_id and student_id as well.
+*/
   
-  
+
+/*SECOND EXAMPLE*/
 SELECT * FROM film;
 
 SELECT *
