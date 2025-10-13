@@ -11,8 +11,7 @@ JOIN TYPE ONLY AFFECT THE UNMATCHING ROWS.
 Types of Join(Left,Right,Inner,Full) only give us the rules only for matching and non-matching records.*/
 
 /*LEFT JOIN*/
-/* Joining the film table with the film_actor and actor tables to list all films and their associated actors, including films without any 
-actors*/
+/* Joining the film table with the film_actor and actor tables to list all films and their associated actors, including films without any actors.*/
 SELECT *
 FROM film_actor 
 LEFT JOIN film
@@ -47,7 +46,7 @@ ON customer.customer_id = rental.cutomer_id;
 
 
 /*INNER JOIN*/
-/*Joining the film and film_category tables to retrieve film titles and their corresponding category IDs*/
+/*Joining the film and film_category tables to retrieve film titles and their corresponding category IDs.*/
 SELECT film.film_id,film_category.category_id
 FROM film 
 INNER JOIN film_category
@@ -72,8 +71,8 @@ AND inventory_id =1;
 
 
 /*USING Keyword*/
-/*Till now we use ON keyword to join the tables, if joining columns for both the tables are same or not. But instead of ON keyword, if the
-joining column for tables are same than we can use USING keyword as well to join the tables.
+/*Till now we use ON keyword to join the tables, if joining columns for both the tables are same or not. 
+But instead of ON keyword, if the joining column for tables are same than we can use USING keyword as well to join the tables.
 USING keyword is the shortest way to join two tables.*/
 SELECT * FROM film 
 JOIN film_actor
@@ -87,10 +86,9 @@ USING (film_id);
 /*As of now we join two tables using ON and USING keyword,but if we want SQL to smartly join two tables without explicity telling the joining
 condition than we can use NATURAL join.
 Now if there are more than one columns on which two tables can join, than NATURAL JOIN will first join on basics of First matching column and 
-than tries to filter on second matching column, than sometimes it will be difficult for Natual Join to filter the columns and this returns 0 rows 
-in result table.
-So it is preferable to use normal Joins and customize the conditions to join the table instead of being independent on default filteration
-done by Natural Join.*/
+than tries to filter on second matching column, than sometimes it will be difficult for Natual Join to filter the columns and this returns 0 rows in result table.
+
+So it is preferable to use normal Joins and customize the conditions to join the table instead of being independent on default filteration done by Natural Join.*/
 SELECT * 
 FROM actor 
 NATURAL JOIN film_actor;
@@ -98,15 +96,12 @@ NATURAL JOIN film_actor;
 
 /*IMPLICIT JOIN*/
 /*
-An Implicit Join is an older, pre-1992 syntax for joining tables. You perform an implicit join by listing multiple tables in the 
-FROM clause (separated by commas) and then defining the join relationship in the WHERE clause.However, the simple answer to "when and 
-why we should use it" is that you should almost always avoid it in favor of the modern, explicit JOIN syntax.
-The easiest way to understand SQL JOINs is to think of them as a toolkit for combining data. The four fundamental join types 
-(INNER, LEFT, RIGHT, and FULL) are your core tools, like a hammer and screwdriver, that define the basic rules for how to connect tables. 
-Other joins are just special techniques for using these tools; for example, a Self Join isn't a new tool, but a technique where you use a 
-standard INNER JOIN to connect a table back to itself. Older styles like Implicit and Natural joins are like rusty, outdated tools that 
-should be avoided because the modern, explicit JOIN...ON syntax is much safer and clearer. Therefore, mastering joins is simply about 
-knowing which of your four core tools to use and which technique to apply to solve a specific problem.
+An Implicit Join is an older, pre-1992 syntax for joining tables. You perform an implicit join by listing multiple tables in the FROM clause (separated by commas) and then defining the join relationship in the WHERE clause.
+However, the simple answer to "when and why we should use implicit join" is that you should almost always avoid it in favor of the modern, explicit JOIN syntax.
+The easiest way to understand SQL JOINs is to think of them as a toolkit for combining data. The four fundamental join types (INNER, LEFT, RIGHT, and FULL) are your core tools, like a hammer and screwdriver, that define the basic rules for
+how to connect tables. Other joins are just special techniques for using these tools; for example, a Self Join isn't a new tool, but a technique where you use a standard INNER JOIN to connect a table back to itself. Older styles 
+like Implicit and Natural joins are like rusty, outdated tools that should be avoided because the modern, explicit JOIN...ON syntax is much safer and clearer. Therefore, mastering joins is simply about knowing which of your four core 
+tools to use and which technique to apply to solve a specific problem.
 */
 
 
