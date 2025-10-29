@@ -2,11 +2,12 @@
 In this repository there are concepts and few questions related to SQL.
 Concepts are :
 1. Keys
-2. CRUD
-3. Joins
-4. Aggregate Queries
-5. SubQueries and Views
-6. Indexing
-7. Transactions
-8. Window Function
-9. Schema Design
+2. Cascading Effect
+3. CRUD
+4. Joins
+5. Aggregate Queries
+6. SubQueries and Views
+7. Indexing
+8. Transactions
+9. Window Function
+10. Schema Design
