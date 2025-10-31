@@ -85,7 +85,7 @@ SHOW CREATE TABLE student_info;
 ALTER TABLE student_info
 DROP CONSTRAINT student_info_ibfk_1;
 
-/*ADD on cascade on foreign key in child table And set null values when de;eting*/
+/*ADD on cascade on foreign key in child table And set null values when deleting*/
 ALTER TABLE student_info 
 ADD CONSTRAINT onCascadeConstraint_courseID
 FOREIGN KEY (courseID) 
@@ -94,8 +94,9 @@ ON UPDATE CASCADE
 ON DELETE CASCADE;
 
 /*
-DELETE a value from course table (parent Table) and along with it values from child table gets deleted as well deleted because we apply 
-cascasde functionality.
+DELETE a value from course table (parent Table) and along with it values from child table gets deleted as well deleted because we apply cascasde functionality.
+The ON CASCADE functionality works on the parent table to propagate changes to the child table. When you perform a DELETE or UPDATE operation on a row in the parent table, the ON CASCADE constraint automatically applies the same change to 
+the corresponding rows in the child table(s) to maintain referential integrity. 
 */
 
 delete from course where course_id = 102;
