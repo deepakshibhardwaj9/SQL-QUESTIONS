@@ -46,9 +46,8 @@ SELECT distinct * FROM student_info
 ORDER BY enrollmentYear;
 
 
-/*LIMIT CLAUSE ---> Limit clause we use to limit the data i.e. when we dont want to see whole data, we just need some records, for example 
-  we need first 20 records than we use Limit clause. 
-  */
+/*LIMIT CLAUSE ---> Limit clause we use to limit the data i.e. when we dont want to see whole data, we just need some records, for example out of 100 records, we need first 20 records than we use Limit clause. */
+
 SELECT * FROM student_info 
 LIMIT 5;                   -- we get first 5 records according to deafault sorting of Primary key.
 
