@@ -96,8 +96,11 @@ ON DELETE CASCADE;
 /*
 DELETE a value from course table (parent Table) and along with it values from child table gets deleted as well deleted because we apply cascasde functionality.
 The ON CASCADE functionality works on the parent table to propagate changes to the child table. When you perform a DELETE or UPDATE operation on a row in the parent table, the ON CASCADE constraint automatically applies the same change to 
-the corresponding rows in the child table(s) to maintain referential integrity. 
+the corresponding rows in the child table(s) to maintain referential integrity.
 */
+/*REFRENTIAL INTEGRITY, it is a database constraint that ensures the relationship between child table and parent table remains consistent,validating the foreign key values. It will check that every foreign key value in child table must have its
+matching value in parent table.*/
+
 
 delete from course where course_id = 102;
 
