@@ -4,7 +4,7 @@ use sakila;
 /*JOIN*/
 /*JOIN is used to fetch the data from more than one tables.
   We use JOIN keyword to join one table with another table.
-  And as we need to join the tables based on any condition so that condition will be defined using ON clause.*/
+  And as we will get the records from more than one table only if the records are same, and that matching condition we defined in ON Clause.*/
 SELECT * 
 FROM film_actor
 JOIN actor
