@@ -11,7 +11,8 @@ These are the building blocks. They answer the question: "How should we merge ro
 1.INNER JOIN: Returns only the rows that have matching values in both tables.
 2.LEFT JOIN: Returns all rows from the left table, and the matched rows from the right table. If there's no match, the right side is NULL.
 3.RIGHT JOIN: Returns all rows from the right table, and the matched rows from the left table. If there's no match, the left side is NULL.
-4.FULL OUTER JOIN: Returns all rows when there is a match in either the left or the right table. It's a combination of LEFT and RIGHT JOIN
+4.FULL OUTER JOIN: Returns all rows when there is a match in either the left or the right table. It's a combination of LEFT and RIGHT JOIN.
+
 Other Joins as Techniques:
 These are not new types of joins; they are different ways of using the fundamental joins.
 1.SELF JOIN:
@@ -31,8 +32,7 @@ For example: ON a.id = b.id AND a.date = b.date.
 
 /*
 QUES -> we join tables with ON condition, and we get the result of matching rows and this is same in Types of joins as well as in other joins.
-ANS-> Imagine your Join Type (like INNER JOIN or LEFT JOIN) is a tool—for example, a hammer. A hammer's basic job is always the 
-same: to hit nails.
+ANS-> Imagine your Join Type (like INNER JOIN or LEFT JOIN) is a tool—for example, a hammer. A hammer's basic job is always the same: to hit nails.
 Now, think about how you can use this one tool:
 Scenario 1 (Standard Join): You can use the hammer to nail one piece of wood to a different piece of wood. This is the normal, standard 
 way you'd expect to use it.
