@@ -52,5 +52,80 @@ WHERE category_id =
 
 
 /*SUBQUERY USING FROM CLAUSE*/
-/*Acts as a temporary table to be used within the main query. It must be given an alias to reference throughout the query, providing 
-modularity and clarity in SQL scripts.*/
+/*FROM clause in general used as a Value Provider, it is used in Select,Where,Having statements.*/
+/*Use of simple FROM clause:-> */
+SELECT * FROM film;
+SELECT * FROM film 
+WHERE rental_duration =6;
+
+/*Similary FROM clause in SubQueries will help to fetch the result from a temporary table, which is created inside FROM clause.*/
+SELECT * FROM film;
+SELECT * FROM category;
+SELECT * FROM film_category;
+
+/*Select films with category Action.*/
+SELECT * FROM film
+WHERE film_id
+IN (SELECT film_id FROM film_category 
+WHERE category_id IN 
+(SELECT category_id FROM category
+WHERE name = 'Action'));
+
+/*Subqueries using FROM clause are generally used with aggregate functions,although we can use FROM Clause except this.
+  Whenever you use FROM clause in subqueries always provide an alias to the temporary table, as this is the syntax for this.*/
+/*Example : Finding the average number of rentals per customer.*/
+select * from rental; 				-- select count(inventory_id),customer_id from rental group by customer_id limit 10;
+
+SELECT AVG(rental_count) 
+FROM
+(SELECT customer_id, COUNT(rental_id) AS rental_count
+    FROM rental
+    GROUP BY customer_id
+) as customer_rental_table;								-- give a name to the column which we fetched out of subQuery,else if we dont give any name to the data which we fetced, the data wont procced futher for upcoming calculations in main query.
+
+/*ALL and ANY KEYWORDS*/
+/* ALL -->  -The result which we get from subQuery, ALL will check if the condition holds true for all the values.
+			-The ALL operator:
+				returns a boolean value as a result.
+				returns TRUE if ALL of the subquery values meet the condition.
+				used with SELECT, WHERE and HAVING statements.
+			ALL means that the condition will be true only if the operation is true for all values in the range.
+*/
+/*ANY --> The result which we get from subQuery, ANY will check if the condition holds true for any of the values.*/
+
+/*List all movies that have a budget greater than the budget of any movie in the Action genre.*/
+
+use imdb_movies_dataset;
+
+SELECT * FROM movies 
+WHERE movie_id = ANY
+(SELECT movie_id 
+FROM movie_genres 
+WHERE genre_id IN(
+SELECT genre_id FROM genres
+WHERE genre_name ='Action'));
+
+/*UNION CLAUSE 
+  Union will combine the results of all tables in single row but skip the duplicate values.
+  If we want duplicate values in our result set than use UNION ALL.*/
+  SELECT actor_name FROM actors
+  UNION 
+  SELECT director_name FROM directors
+  UNION
+  SELECT title FROM movies;
+  
+/*CORELATED QUERIES:
+A correlated subquery is a subquery that depends on values from the outer query. Unlike a regular (non-correlated) subquery, it is 
+evaluated once for every row in the outer query. This makes correlated subqueries dynamic and highly useful for solving complex database 
+problems like row-by-row comparisons, filtering, and conditional updates.
+*/
+/*Finding customers who have paid more than average payment in their respective stores.*/
+
+  
+/*EXISTS KEYWORD
+
+*/
+  
+/*VIEWS
+
+*/
