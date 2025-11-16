@@ -120,12 +120,58 @@ evaluated once for every row in the outer query. This makes correlated subquerie
 problems like row-by-row comparisons, filtering, and conditional updates.
 */
 /*Finding customers who have paid more than average payment in their respective stores.*/
+use sakila;
+SELECT customer.customer_id,concat(customer.first_name, customer.last_name), email, store_id
+FROM customer WHERE customer_id IN
+(SELECT distinct customer_id 
+FROM payment p
+WHERE p.amount > 
+(SELECT AVG(py.amount) 
+FROM payment py 
+WHERE py.customer_id = p.customer_id));
 
-  
-/*EXISTS KEYWORD
-
+/*EXISTS KEYWORD :
+EXISTS keyword is used to test the existance of matching rows in subquery.
+Result for IN and EXISTS are same the only difference is in performance, EXISTS is more efficient than IN clause. 
 */
-  
-/*VIEWS
+SELECT * 
+FROM film WHERE film_id =
+(SELECT film_id FROM film_category f
+WHERE f.category_id =
+(SELECT C.category_id FROM category C
+WHERE C.name IN ('Animation' ,'Documentary')));
 
+/*VIEWS : 
+View is the virtual table which is just like a real table in database. So that developer can understand the whole schema and can do 
+operations on virtual data which can fit into real-time database.
+HOW TO CREATE A VIEW?? 
+CREATE  OR REPLACE VIEW view_name AS 
+(Give the query of main table here );
+
+HOW TO RUN THE VIEW?
+SELECT * FROM view_name;
+
+If we want to create a new View than use CREATE VIEW, if we want to update the already existing view than use CREATE OR REPLACE VIEW.
 */
+-- create a new view 
+USE sakila;
+CREATE VIEW city_address_view 
+AS 
+SELECT c.city,c.city_id FROM address A
+JOIN city c
+ON A.city_id = c.city_id;
+
+-- modify existing view
+CREATE OR REPLACE VIEW city_address_view 
+AS 
+SELECT A.location,c.city,c.city_id FROM address A
+JOIN city c
+ON A.city_id = c.city_id;
+
+SELECT * FROM city_address_view;
+
+-- SHOW ALL VIEWS 
+SHOW FULL TABLES WHERE table_type = 'VIEW';
+
+-- we can also drop the view 
+DROP VIEW city_address_view;
