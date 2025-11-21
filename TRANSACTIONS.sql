@@ -54,3 +54,24 @@
                      -----write your queries here
                      -----
                      ROLLBACK;*/
+/*Transaction T1*/
+begin ;
+SELECT * FROM film
+where film_id = 1;
+COMMIT;
+
+/*Transaction T2*/
+begin;
+update film
+set release_year = 2007
+where film_id =1;
+commit;
+
+/*Transaction T3*/
+begin; 
+select * from film where film_id = 1;
+update film 
+set release_year = 2009
+where film_id = 1;
+select * from film where film_id=1;
+rollback;
