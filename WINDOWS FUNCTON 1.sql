@@ -17,3 +17,5 @@ group by customer_id;
 -- where customer_id=2
 -- order by staff_id;
 
+-- FOPO 
+-- FOMO
