@@ -89,3 +89,35 @@ from payment;
 -- to achieve table + aggregation we need FO only
 -- to achieve group wise tables we need FOP (function,over,partition by)
 -- In simple queries if we want specific result we use WHERE Clause.But in Windows function, if we want filters than we can use subqueries.
+
+-- calculate the average amount
+select avg(amount) from payment;
+
+-- Ques: Compare the individual amount with overall average amount.
+select customer_id, amount, avg(amount) over() 
+from payment;
+
+-- comparet the amount of employees with overall group-wise average amount.
+select customer_id,amount,avg(amount) over(partition by customer_id) as avg_amount, rank() over(  order by amount asc)
+from payment;
+
+/*show the customers who exceeds the average amount of there respective amount.
+  1) we need to calculate the average salary.
+  2) because we need to filter out the records, so we need where clause. But because average salary is not a direct column in input table, so we can use subqueries to make that column and than apply where clause. 
+*/
+select * from
+(select amount, customer_id,avg(amount) over() as a_amount 
+from payment) as avg_table													-- name the temporary table is important
+where amount > a_amount;
+
+-- so anytime we need to filter the windows function column always use subqueries and where clause.
+
+/* RUNNING TOTAL/CULUMATIVE SUM
+   -For the question who asks running total/cumulative sum always use windows function.
+   -to achieve that we need FOO (function , over,order by) 
+   -Order by in windows function is different from order by clause we used to sort our dataset.
+   -to get cumulative calculations use 'order by' inside windows's over() function.
+   -for the questions, asking 'sum till now','max sum till now',etc. that all are done by just using 'order by' clause inside over().
+*/
+
+-- we can use FOPO i.e. function,over,partition by, order by according to our question.
