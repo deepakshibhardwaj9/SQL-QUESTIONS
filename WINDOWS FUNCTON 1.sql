@@ -64,6 +64,8 @@ FROM (
 SELECT customer_id,sum(amount) over(partition by customer_id)
 from payment;
 
+
+-- ranking functions are used in ordered result sets, such as when we need Top N result sets.
 /*RANK-- it will skip the ties */
 select customer_id ,amount, rank() over(order by amount desc) 
 from payment;
@@ -111,6 +113,17 @@ from payment) as avg_table													-- name the temporary table is important
 where amount > a_amount;
 
 -- so anytime we need to filter the windows function column always use subqueries and where clause.
+
+/*Give the rank to payment_id's on the basis of there amount, also rank should be according to the groups of customer_id.
+1) create groups according to customer-id
+2) sort the amounts. 
+3) give rank to the customers
+*/
+select customer_id,amount, dense_rank() over(partition by customer_id order by amount) 
+FROM payment
+
+-- always use dense_rank for giving rank to a group 
+-- use row_number when asked to give one rank to a row only, else dont use it.
 
 /* RUNNING TOTAL/CULUMATIVE SUM
    -For the question who asks running total/cumulative sum always use windows function.
